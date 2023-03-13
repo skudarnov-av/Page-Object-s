@@ -29,7 +29,9 @@ public class DataHelp {
 
     @Value
     public static class Cards {
-        private String cardNumber;
+        private String number;
+
+
     }
 
     public static Cards getFirstCard() {
