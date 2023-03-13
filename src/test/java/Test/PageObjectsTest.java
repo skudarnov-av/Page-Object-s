@@ -3,14 +3,12 @@ package Test;
 import com.codeborne.selenide.Configuration;
 import Data.DataHelp;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import Page.LoginPage;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-
 public class PageObjectsTest {
-
     int money = 1000;
 
     @BeforeEach
@@ -23,9 +21,13 @@ public class PageObjectsTest {
                 .validLogin(authInfo)
                 .validVerify(verificationCode);
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldTransferMoneySecondCard() {
         $("[data-test-id=\"action-deposit\"]").click();
         $("[data-test-id=\"amount\"] input").setValue(String.valueOf(money));
     }
 }
+
+
+
+
