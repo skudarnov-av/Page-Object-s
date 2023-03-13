@@ -1,10 +1,10 @@
-package Test;
+package test;
 
 import com.codeborne.selenide.Configuration;
-import Data.DataHelp;
+import data.DataHelp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import Page.LoginPage;
+import page.LoginPage;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 

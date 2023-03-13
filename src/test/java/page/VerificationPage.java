@@ -1,7 +1,7 @@
-package Page;
+package page;
 
 import com.codeborne.selenide.SelenideElement;
-import Data.DataHelp;
+import data.DataHelp;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 

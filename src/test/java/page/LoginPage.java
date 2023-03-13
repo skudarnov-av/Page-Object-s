@@ -1,6 +1,6 @@
-package Page;
+package page;
 
-import Data.DataHelp;
+import data.DataHelp;
 
 import static com.codeborne.selenide.Selenide.$;
 
