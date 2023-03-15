@@ -21,7 +21,6 @@ public class TopUpPage {
         sumField.setValue(sum);
         accountField.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         accountField.setValue(cardNum);
-        sleep(5000);
         topUpButton.click();
         return new DashboardPage();
     }

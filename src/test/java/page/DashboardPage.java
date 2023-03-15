@@ -5,40 +5,49 @@ import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage {
-
-    private SelenideElement heading = $("[data-test-id=\"dashboard\"]");
-    private ElementsCollection topUpButtons = $$("button[data-test-id=action-deposit]");
-
-    private ElementsCollection cards = $$(".list_item");
-    private ElementsCollection button = $$("[data-test-id=\"action-deposit\"]");
-
-    public SelenideElement card1 = $("div[data-test-id='92df3f1c-a033-48e6-8390-206f6b1f56c0']");
-    public SelenideElement card2 = $("div[data-test-id='0f3f5c2a-249e-4c3d-8287-09f7a039391d']");
-
+    private SelenideElement heading = $("[data-test-id=dashboard]");
+    private SelenideElement yoursCards = $("h1");
+    private SelenideElement firstCardDepositingButton = $x("//li[1]/div/button");
+    private SelenideElement secondCardDepositingButton = $x("//li[2]/div/button");
+    private ElementsCollection cards = $$(".list__item div");
     private final String balanceStart = "баланс: ";
+    private final String balanceFinish = " р.";
 
-    private final String balanceFinish = "р.";
-
+    private int extractBalance(String text) {
+        val start = text.indexOf(balanceStart);
+        val finish = text.indexOf(balanceFinish);
+        val value = text.substring(start + balanceStart.length(), finish);
+        return Integer.parseInt(value);
+    }
     public DashboardPage() {
         heading.shouldBe(visible);
+        yoursCards.shouldBe(visible);
     }
 
-    public TopUpPage clickTopUp(SelenideElement card) {
 
-        card.find("button[data-test-id=action-deposit]").click();
+    public int getFirstCardBalance() {
+        val text = cards.first().text();
+        return extractBalance(text);
+    }
+
+    public int getSecondCardBalance() {
+        val text = cards.last().text();
+        return extractBalance(text);
+    }
+
+    public TopUpPage firstCardDepositing() {
+        firstCardDepositingButton.click();
         return new TopUpPage();
     }
 
-    public int getBalance(SelenideElement card) {
-        String [] text = card.innerText().split(" ");
-        return Integer.parseInt(text[5]);
+    public TopUpPage secondCardDepositing() {
+        secondCardDepositingButton.click();
+        return new TopUpPage();
     }
 
-
-
-
 }
+
+
